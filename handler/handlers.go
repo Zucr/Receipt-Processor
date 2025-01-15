@@ -62,8 +62,11 @@ func ProcessReceiptHandler(w http.ResponseWriter, r *http.Request) {
 func GetReceiptPointsHandler(w http.ResponseWriter, r *http.Request) {
 	receiptID :=  r.PathValue("id")
 
+	//This is pointless but it was in the openapi 
+	// and there are no other badRequest statements 
+	// so Ill just add it here becuase why not.
 	if util.RegexEvaluate(`^\S+$`, receiptID) {
-		http.Error(w, "The receipt is invalid.", http.StatusBadRequest )
+		http.Error(w, "No receipt found for that ID", http.StatusNotFound )
 		return
 	}
 
