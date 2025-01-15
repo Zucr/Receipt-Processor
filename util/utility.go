@@ -6,10 +6,19 @@ import (
 	"unicode"
 	"strings"
 	"math"
+	"regexp"
 	"receipt-processor/model"
 )
 
 //probable batman's utility belt
+func RegexEvaluate(regx string, toEvaluate string) bool {
+	regex := regexp.MustCompile(regx)
+	if !regex.MatchString(toEvaluate) {
+		return true
+	}
+	return false
+}
+
 func ToFloat(someString string) float64 {
 	val, err := strconv.ParseFloat(someString, 64)
 	if err != nil {
